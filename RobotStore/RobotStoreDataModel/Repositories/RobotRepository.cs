@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using RobotStoreDataLayer.Models;
+using System.Collections.Generic;
 using System.Linq;
 
-namespace RobotStoreDataLayer
+namespace RobotStoreDataLayer.Repositories
 {
     public class RobotRepository
     {

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RobotStoreDataLayer;
+using RobotStoreDataLayer.Models;
 
 namespace RobotsWebStore.Controllers
 {
@@ -21,8 +22,8 @@ namespace RobotsWebStore.Controllers
 
             if (_context.Robots.Count() == 0)
             {
-                // Create a new TodoItem if collection is empty,
-                // which means you can't delete all TodoItems.
+                // Create new Robot if collection is empty,
+                // which means you can't delete all Robot.
                 _context.Robots.Add(new Robot { Name = "Robot1", Price = "1.00€" });
                 _context.Robots.Add(new Robot { Name = "Robot2", Price = "5.00€" });
                 _context.Robots.Add(new Robot { Name = "Robot3", Price = "10.00€" });

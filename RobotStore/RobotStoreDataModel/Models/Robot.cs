@@ -1,4 +1,4 @@
-﻿namespace RobotStoreDataLayer
+﻿namespace RobotStoreDataLayer.Models
 {
     public class Robot
     {
