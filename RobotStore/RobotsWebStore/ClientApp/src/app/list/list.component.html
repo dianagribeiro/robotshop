@@ -1,0 +1,31 @@
+<h1>Robots List</h1>
+
+<p>Here you can find all of the available robots</p>
+
+<!--<p>Current count: <strong>{{ currentCount }}</strong></p>
+
+<button (click)="incrementCounter()">Increment</button>-->
+
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let robot of robots">
+      <td>{{ robot.id }}</td>
+      <td>{{ robot.name }}</td>
+      <td>{{ robot.price }}</td>
+      <td>
+        <a (click)="deleteRobot(robot.id)">
+          <span class='glyphicon glyphicon-remove'></span>
+        </a>
+      </td>
+  </tbody>
+</table>
+
+

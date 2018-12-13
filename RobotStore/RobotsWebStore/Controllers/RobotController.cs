@@ -24,6 +24,10 @@ namespace RobotsWebStore.Controllers
                 // Create a new TodoItem if collection is empty,
                 // which means you can't delete all TodoItems.
                 _context.Robots.Add(new Robot { Name = "Robot1", Price = "1.00€" });
+                _context.Robots.Add(new Robot { Name = "Robot2", Price = "5.00€" });
+                _context.Robots.Add(new Robot { Name = "Robot3", Price = "10.00€" });
+                _context.Robots.Add(new Robot { Name = "Robot4", Price = "20.00€" });
+                _context.Robots.Add(new Robot { Name = "Robot5", Price = "8.00€" });
                 _context.SaveChanges();
             }
         }
