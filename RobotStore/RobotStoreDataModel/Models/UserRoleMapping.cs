@@ -11,14 +11,15 @@ namespace RobotStoreDataLayer.Models
         [Key]
         public long Id { get; set; }
 
+        [ForeignKey("UserFK")]
         public User User { get; set; }
 
-        public Role Role { get; set; }
+        //public Role Role { get; set; }
 
-        [ForeignKey("User")]
+        
         public long UserFK { get; set; }
 
-        [ForeignKey("Role")]
-        public long RoleFK { get; set; }
+        //[ForeignKey("Role")]
+        //public long RoleFK { get; set; }
     }
 }

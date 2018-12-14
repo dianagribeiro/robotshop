@@ -27,8 +27,8 @@ namespace RobotStoreDataLayer.Repositories
 
         public void Delete(int id)
         {
-            var roleToRemove = _context.Roles.Where(X => X.Id == id).FirstOrDefault();
-            _context.Roles.Remove(roleToRemove);
+            var userToRemove = _context.Users.Where(X => X.Id == id).FirstOrDefault();
+            _context.Users.Remove(userToRemove);
         }
 
         public List<User> Getroles()

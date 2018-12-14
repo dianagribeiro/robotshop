@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotStoreDataLayer", "RobotStoreDataModel\RobotStoreDataLayer.csproj", "{73C5EEC1-74E4-450B-92A4-D56F5883E2E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotStoreDataLayer", "RobotStoreDataModel\RobotStoreDataLayer.csproj", "{73C5EEC1-74E4-450B-92A4-D56F5883E2E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotsWebStore", "RobotsWebStore\RobotsWebStore.csproj", "{E6A86314-7481-425B-8433-E93296D138B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RobotsWebStore", "RobotsWebStore\RobotsWebStore.csproj", "{E6A86314-7481-425B-8433-E93296D138B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RobotStoreTest", "RobotStoreTest\RobotStoreTest.csproj", "{8EBAC5D0-8D09-4D36-8101-1A514D694286}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E6A86314-7481-425B-8433-E93296D138B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6A86314-7481-425B-8433-E93296D138B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6A86314-7481-425B-8433-E93296D138B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EBAC5D0-8D09-4D36-8101-1A514D694286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EBAC5D0-8D09-4D36-8101-1A514D694286}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EBAC5D0-8D09-4D36-8101-1A514D694286}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EBAC5D0-8D09-4D36-8101-1A514D694286}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

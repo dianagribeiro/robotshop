@@ -21,16 +21,16 @@ namespace roleStoreDataLayer.Repositories
             _context.Roles.Add(role);
         }
 
-        public Role Find(int id)
-        {
-            return _context.Roles.Where(X => X.Id == id).FirstOrDefault();
-        }
+        //public Role Find(int id)
+        //{
+        //    return _context.Roles.Where(X => X.Id == id).FirstOrDefault();
+        //}
 
-        public void Delete(int id)
-        {
-            var roleToRemove = _context.Roles.Where(X => X.Id == id).FirstOrDefault();
-            _context.Roles.Remove(roleToRemove);
-        }
+        //public void Delete(int id)
+        //{
+        //    var roleToRemove = _context.Roles.Where(X => X.Id == id).FirstOrDefault();
+        //    _context.Roles.Remove(roleToRemove);
+        //}
 
         public List<Role> Getroles()
         {
