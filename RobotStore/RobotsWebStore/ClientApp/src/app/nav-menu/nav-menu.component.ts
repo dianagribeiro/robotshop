@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HomeService } from '../home/home.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -15,4 +16,6 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
+
+  
 }

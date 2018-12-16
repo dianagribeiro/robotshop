@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RobotStoreDataLayer;
+using RobotStoreDataLayer.Common;
 using RobotStoreDataLayer.Models;
 
 namespace RobotsWebStore.Controllers
@@ -20,24 +22,37 @@ namespace RobotsWebStore.Controllers
         {
             _context = context;
 
-            if (_context.Users.Count() == 0)
-            {
-                // Create new Robot if collection is empty,
-                // which means you can't delete all Robot.
-                var user = new User { Username = "username", Password = "password" };
-                var role = new Role { Name = "ReadAndCreate" };
-                _context.Roles.Add(role);
-                _context.SaveChanges();
-                _context.Users.Add(user);
-                user.Roles.Add(role);
-                _context.SaveChanges();
-            }
         }
 
+        //[HttpGet("[action]")]
+        //public async Task<ActionResult<IEnumerable<User>>> List()
+        //{
+        //    return await _context.Users.Include(u => u.Role).ToListAsync();
+        //}
+
         [HttpGet("[action]")]
-        public async Task<ActionResult<IEnumerable<User>>> List()
+        [AllowAnonymous]
+        public async Task<ActionResult> Login(string username, string password)
         {
-            return await _context.Users.ToListAsync();
+            var passwordHash = PasswordManager.ComputeSha256Hash(password);
+
+            var user = _context.Users.Include(u=> u.Role).Single(u => u.Username == username);
+
+            if(user == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                if(user.Password == passwordHash)
+                {
+                    return Ok(new { data = TokenManager.GenerateToken(user), username = user.Username });
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
         }
     }
 }

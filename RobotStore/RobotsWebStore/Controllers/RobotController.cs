@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RobotStoreDataLayer;
 using RobotStoreDataLayer.Models;
+using RobotsWebStore.Filters;
 
 namespace RobotsWebStore.Controllers
 {
@@ -19,22 +21,11 @@ namespace RobotsWebStore.Controllers
         public RobotController(DatabaseContext context)
         {
             _context = context;
-
-            if (_context.Robots.Count() == 0)
-            {
-                // Create new Robot if collection is empty,
-                // which means you can't delete all Robot.
-                _context.Robots.Add(new Robot { Name = "Robot1", Price = "1.00€" });
-                _context.Robots.Add(new Robot { Name = "Robot2", Price = "5.00€" });
-                _context.Robots.Add(new Robot { Name = "Robot3", Price = "10.00€" });
-                _context.Robots.Add(new Robot { Name = "Robot4", Price = "20.00€" });
-                _context.Robots.Add(new Robot { Name = "Robot5", Price = "8.00€" });
-                _context.SaveChanges();
-            }
         }
 
         //GET: api/robot/list
         [HttpGet("[action]")]
+        [JwtAuthorizationFilter("creator", "reader")]
         public async Task<ActionResult<IEnumerable<Robot>>> List()
         {
             return await _context.Robots.ToListAsync();
@@ -42,6 +33,7 @@ namespace RobotsWebStore.Controllers
 
         //GET: api/robot/get/1 
         [HttpGet("[action]/{id}")]
+        [JwtAuthorizationFilter("creator", "reader")]
         public async Task<ActionResult<Robot>> Get(long id) 
         {
             var robot = await _context.Robots.FindAsync(id);
@@ -58,6 +50,7 @@ namespace RobotsWebStore.Controllers
 
         //POST: api/robot/add --- create json body with values
         [HttpPost("[action]")]
+        [JwtAuthorizationFilter("creator")]
         public async Task<ActionResult<Robot>> Add(Robot robot)
         {
             _context.Robots.Add(robot);
@@ -68,6 +61,7 @@ namespace RobotsWebStore.Controllers
 
         // DELETE: api/robot/delete/1
         [HttpDelete("[action]/{id}")]
+        [JwtAuthorizationFilter("creator")]
         public async Task<ActionResult<Robot>> Delete(long id)
         {
             var robot = await _context.Robots.FindAsync(id);
