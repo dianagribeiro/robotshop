@@ -9,9 +9,12 @@ import { Router } from '@angular/router';
   providers: [HomeService]
 })
 export class ListComponent {
-  //public currentCount = 0;
 
   public robots: Robot[];
+  public robot: Robot;
+  getSuccess: boolean = false;
+  id: number;
+  
 
   constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private service: HomeService, private router: Router) {
     this.getListRobots();
@@ -34,8 +37,26 @@ export class ListComponent {
         this.robots = result;
       }, error => console.error(error));
     }
+  }
 
-    
+  getRobot() {
+
+    if (this.service.getToken() == null) {
+      alert("You need to login to access the application.");
+      this.router.navigate(['/']);
+    } else {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'JwtToken': this.service.getToken()
+        })
+      };
+
+      this.http.get<Robot>(this.baseUrl + 'api/robot/get/' + this.id, httpOptions).subscribe(result => {
+        this.robot = result;
+        this.getSuccess = true;
+      }, error => console.error(error));
+    }
   }
 
   deleteRobot(id: number) {
@@ -51,10 +72,6 @@ export class ListComponent {
     }, error => alert("Unauthorized"));
   }
 
-  //public incrementCounter() {
-  //  this.currentCount++;
-  //}
-  
 }
 
 interface Robot {

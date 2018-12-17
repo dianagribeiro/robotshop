@@ -28,4 +28,20 @@
   </tbody>
 </table>
 
+<div>
+  <form (ngSubmit)="getRobot(id)">
+    <div class="form-group">
+      <label for="id">Id</label>
+      <input type="text" class="form-control" id="id" [(ngModel)]="id" name="id" required>
+    </div>
 
+    <button type="submit" class="btn btn-success">Get Robot</button>
+
+  </form>
+</div>
+
+<div *ngIf="getSuccess">
+  <p >Id: {{ robot.id }}</p>
+  <p >Name: {{ robot.name }}</p>
+  <p >Price: {{ robot.price }}</p>
+</div>
