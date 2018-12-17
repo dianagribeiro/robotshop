@@ -55,7 +55,7 @@ export class ListComponent {
       this.http.get<Robot>(this.baseUrl + 'api/robot/get/' + this.id, httpOptions).subscribe(result => {
         this.robot = result;
         this.getSuccess = true;
-      }, error => console.error(error));
+      }, error => alert("Not Found"));
     }
   }
 
