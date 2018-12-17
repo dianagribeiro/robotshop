@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HomeService } from '../home/home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-component',
@@ -12,21 +13,29 @@ export class ListComponent {
 
   public robots: Robot[];
 
-  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private service: HomeService) {
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string, private service: HomeService, private router: Router) {
     this.getListRobots();
   }
 
   getListRobots() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'JwtToken': this.service.getToken()
-      })
-    };
 
-    this.http.get<Robot[]>(this.baseUrl + 'api/robot/list', httpOptions).subscribe(result => {
-      this.robots = result;
-    }, error => console.error(error));
+    if (this.service.getToken() == null) {
+      alert("You need to login to access the application.");
+      this.router.navigate(['/']);
+    } else {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+          'JwtToken': this.service.getToken()
+        })
+      };
+
+      this.http.get<Robot[]>(this.baseUrl + 'api/robot/list', httpOptions).subscribe(result => {
+        this.robots = result;
+      }, error => console.error(error));
+    }
+
+    
   }
 
   deleteRobot(id: number) {

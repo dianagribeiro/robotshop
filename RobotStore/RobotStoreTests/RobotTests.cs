@@ -11,7 +11,6 @@ namespace RobotStoreTests
     [TestClass]
     public class RobotTests
     {
-        private DbContextOptions<DatabaseContext> options;
         private DatabaseContext context;
 
         [TestInitialize]
@@ -54,13 +53,44 @@ namespace RobotStoreTests
         [TestMethod]
         public void GetAllRobots()
         {
-           
                 var controller = new RobotController(context);
                 var robots =  controller.List().Result.Value;
                 var robotsList = new List<Robot>(robots);
                 Assert.AreEqual(robotsList.Count, 4);
+        }
+
+        [TestMethod]
+        public void AddRobot()
+        {
+            var controller = new RobotController(context);
+            Robot robot = new Robot { Id = 5, Name = "TestRobot", Price = "20.00€" };
+            var addedRobot = controller.Add(robot).Result.Value;
             
-            
+            var robots = controller.List().Result.Value;
+            var robotsList = new List<Robot>(robots);
+            Assert.AreEqual(robotsList.Count, 5);
+        }
+
+        [TestMethod]
+        public void DeleteRobot()
+        {
+            var controller = new RobotController(context);
+            var deletedRobot = controller.Delete(1).Result.Value;
+
+            var robots = controller.List().Result.Value;
+            var robotsList = new List<Robot>(robots);
+            Assert.AreEqual(robotsList.Count, 3);
+        }
+
+        [TestMethod]
+        public void GetRobotById()
+        {
+            var controller = new RobotController(context);
+            var robot = controller.Get(1).Result.Value;
+
+            Assert.AreEqual(robot.Id, 1);
+            Assert.AreEqual(robot.Name, "Robot1");
+            Assert.AreEqual(robot.Price, "10.00€");
         }
     }
 }
