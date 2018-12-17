@@ -60,4 +60,4 @@ You can access the application here:
 
 * **Diana Ribeiro** 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/dianagribeiro/robotshop/graphs/contributors) who participated in this project.
