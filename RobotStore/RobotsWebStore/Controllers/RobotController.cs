@@ -53,6 +53,8 @@ namespace RobotsWebStore.Controllers
         [JwtAuthorizationFilter("creator")]
         public async Task<ActionResult<Robot>> Add(Robot robot)
         {
+            var id = _context.Robots.LastOrDefault().Id + 1;
+            robot.Id = id;
             _context.Robots.Add(robot);
             await _context.SaveChangesAsync();
 
@@ -62,7 +64,7 @@ namespace RobotsWebStore.Controllers
         // DELETE: api/robot/delete/1
         [HttpDelete("[action]/{id}")]
         [JwtAuthorizationFilter("creator")]
-        public async Task<ActionResult<Robot>> Delete(long id)
+        public async Task<ActionResult<Robot>> Delete(int id)
         {
             var robot = await _context.Robots.FindAsync(id);
             if (robot == null)
