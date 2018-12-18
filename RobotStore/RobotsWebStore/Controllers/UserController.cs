@@ -36,7 +36,7 @@ namespace RobotsWebStore.Controllers
         {
             var passwordHash = PasswordManager.ComputeSha256Hash(password);
 
-            var user = _context.Users.Include(u=> u.Role).Single(u => u.Username == username);
+            var user = await _context.Users.Include(u=> u.Role).SingleAsync(u => u.Username == username);
 
             if(user == null)
             {
