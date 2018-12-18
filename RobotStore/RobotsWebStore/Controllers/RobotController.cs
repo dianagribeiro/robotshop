@@ -34,7 +34,7 @@ namespace RobotsWebStore.Controllers
         //GET: api/robot/get/1 
         [HttpGet("[action]/{id}")]
         [JwtAuthorizationFilter("creator", "reader")]
-        public async Task<ActionResult<Robot>> Get(long id) 
+        public async Task<ActionResult<Robot>> Get(int id) 
         {
             var robot = await _context.Robots.FindAsync(id);
 
