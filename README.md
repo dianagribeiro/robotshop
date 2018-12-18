@@ -1,7 +1,7 @@
 # RobotStore
 
 This project is a Web Application that represents a robot store. In the store you can view, add and delete robots depending on
-the type of your profile. The application is available at: INSERIR URL
+the type of your profile. The application is available at: https://robotswebstoredr.azurewebsites.net/
 
 ## Testing information
 
@@ -51,9 +51,9 @@ Test Explorer. Just click "Run All" to run all the tests.
 
 ## Deployment
 
-This application is deployed to Heroku in a Docker Container.
+This application is deployed to Azure App Service.
 
-You can access the application here: 
+You can access the application here: https://robotswebstoredr.azurewebsites.net/
 
 
 ## Authors
